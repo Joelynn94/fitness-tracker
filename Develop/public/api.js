@@ -48,7 +48,9 @@ const API = {
   async createWorkout(data = {}) {
     // making a post request to /api/workouts endpoint
     const res = await fetch("/api/workouts", {
+      // making a POST request 
       method: "POST",
+      // setting the content-type to json 
       headers: { "Content-Type": "application/json" },
       // JSON.stringify converts a an object or value to json format 
       body: JSON.stringify(data),
