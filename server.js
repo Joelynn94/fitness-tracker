@@ -2,12 +2,19 @@
 const express = require("express");
 // bring in mongoose 
 const mongoose = require("mongoose");
+// bring in mongojs
+const mongojs = require("mongojs");
+// bring in logger 
+const logger = require("morgan");
 
 // sets up the port to listen to
 const PORT = process.env.PORT || 8080;
 
 // initializes express 
 const app = express();
+
+// bringing in the morgan logger 
+app.use(logger("dev"));
 
 // bringing in middleware to parse the request body 
 app.use(express.urlencoded({ extended: true }));
@@ -22,6 +29,7 @@ mongoose.connect(process.env.MONGOD_URI || "mongodb://localhost/workoutsDB", { u
 
 // bringing in the routes folder 
 // app.use(require("./routes/api.js"));
+// app.use(require("./routes/html.js"))
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}`);
