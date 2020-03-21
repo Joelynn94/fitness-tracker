@@ -32,7 +32,6 @@ module.exports = function(app) {
         Workout.findOne({ _id: params.id })
         .then(results => {
           res.json(results)
-          console.log({_id : params.id})
         })
       })
       .catch(err => {
