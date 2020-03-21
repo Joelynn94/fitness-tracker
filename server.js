@@ -7,6 +7,9 @@ const mongojs = require("mongojs");
 // bring in logger 
 const logger = require("morgan");
 
+const path = require("path");
+
+
 // sets up the port to listen to
 const PORT = process.env.PORT || 8080;
 
@@ -28,9 +31,23 @@ app.use(express.static("public"));
 mongoose.connect(process.env.MONGOD_URI || "mongodb://localhost/workoutsDB", { useNewUrlParser: true, useFindAndModify: false});
 
 // bringing in the routes folder 
-// app.use(require("./routes/api.js"));
-app.use(require("./routes/html.js"))
+app.use(require("./routes/api.js"));
+
+// route for the index page
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "public", "index.html"))
+});
+
+// route for the exercise page
+app.get("/exercise", function (req, res) {
+  res.sendFile(path.join(__dirname, "public", "exercise.html"))
+});
+
+// route for the stats page
+app.get("/stats", function (req, res) {
+  res.sendFile(path.join(__dirname, "public", "stats.html"))
+});
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}`);
-})
+});
