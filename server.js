@@ -32,21 +32,6 @@ mongoose.connect(process.env.MONGOD_URI || "mongodb://localhost/workout", { useN
 require('./routes/api-routes')(app)
 require('./routes/html-routes')(app)
 
-// // route for the index page
-// app.get("/", function (req, res) {
-//   res.sendFile(path.join(__dirname, "public", "index.html"))
-// });
-
-// // route for the exercise page
-// app.get("/exercise", function (req, res) {
-//   res.sendFile(path.join(__dirname, "public", "exercise.html"))
-// });
-
-// // route for the stats page
-// app.get("/stats", function (req, res) {
-//   res.sendFile(path.join(__dirname, "public", "stats.html"))
-// });
-
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}`);
 });
