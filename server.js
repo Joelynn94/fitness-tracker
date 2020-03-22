@@ -2,8 +2,6 @@
 const express = require("express");
 // bring in mongoose 
 const mongoose = require("mongoose");
-// bring in mongojs
-const mongojs = require("mongojs");
 // bring in logger 
 const logger = require("morgan");
 
@@ -31,21 +29,6 @@ mongoose.connect(process.env.MONGOD_URI || "mongodb://localhost/workout", { useN
 // bringing in the routes folder 
 require('./routes/api-routes')(app)
 require('./routes/html-routes')(app)
-
-// // route for the index page
-// app.get("/", function (req, res) {
-//   res.sendFile(path.join(__dirname, "public", "index.html"))
-// });
-
-// // route for the exercise page
-// app.get("/exercise", function (req, res) {
-//   res.sendFile(path.join(__dirname, "public", "exercise.html"))
-// });
-
-// // route for the stats page
-// app.get("/stats", function (req, res) {
-//   res.sendFile(path.join(__dirname, "public", "stats.html"))
-// });
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}`);
