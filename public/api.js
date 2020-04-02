@@ -35,7 +35,7 @@ const API = {
       // body data type must match "Content-Type" header
       // To extract the JSON body content from the response, we use the json() method (defined on the Body mixin
       body: JSON.stringify(data)
-      // JSON.stringify converts a an object or value to json format 
+      // JSON.stringify converts an object or value to json format 
     });
 
     // parses JSON response into JavaScript objects

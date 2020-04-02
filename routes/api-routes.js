@@ -14,6 +14,7 @@ module.exports = function(app) {
 
   // route to post a new workout
   app.post("/api/workouts", ({ body }, res) => {
+    console.log(body)
     Workout.create(body)
       .then(results => {
         res.json(results);
@@ -26,8 +27,10 @@ module.exports = function(app) {
   // route to update a workout
   app.put("/api/workouts/:id", ({ params, body }, res) => {
     // find the id to update the database 
-    Workout.findByIdAndUpdate({ _id : params.id }, body)
+    console.log(body)
+    Workout.findByIdAndUpdate({ _id: params.id} , { $push: { exercises: [body] } }, {$inc: { totalDuration: body.duration }})
       .then(() => {
+        console.log(body)
         // have to do another .then to return a promise that updates the front-end
         Workout.findOne({ _id: params.id })
         .then(results => {
